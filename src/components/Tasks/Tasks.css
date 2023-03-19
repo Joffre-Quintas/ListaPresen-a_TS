@@ -1,0 +1,21 @@
+.card {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(255, 153, 116);
+    border-radius: 4px;
+    margin: 1rem 0px;
+    padding: 8px 0px;
+    margin-bottom: 1rem;
+}
+.btnDeleteTask {
+    color: red;
+    background-color: white;
+    padding: 1px;
+    font: bolder;
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+}
