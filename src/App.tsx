@@ -5,29 +5,40 @@ import { Tasks, Task } from './components/Tasks'
 
 function App() {
 
-  const [arrayTasks, setArrayTasks] = useState([])
-
+  const [arrayTasks, setArrayTasks] = useState<Task[]>([])
+  const [work, setWork] = useState<string>("")
   function handleRegister() {
-    const inputElement = document.querySelector('.inputTask') as HTMLInputElement;
-    let inputValue: string = inputElement.value;
-    
-    if (inputValue) {
-      const umaPessoa:Task = {
-         work: inputValue,
-         time: new Date().toLocaleTimeString()
-      }
-      setArrayTasks([...arrayTasks, umaPessoa])
-      inputValue = ''
-      console.log(arrayTasks)
-    }else{
-      alert('Preencha o campo antes de definir uma tarefa')
+    if(work) {
+      const umaPessoa: Task = {
+        work,
+        time: new Date().toLocaleTimeString()
+      };
+      setArrayTasks([...arrayTasks, umaPessoa]);
+      setWork("");
+      console.log(arrayTasks);
+    } else {
+      alert('Preencha o campo antes de definir uma tarefa.')
     }
+    // const inputElement = document.querySelector('.inputTask') as HTMLInputElement;
+    // let inputValue: string = inputElement.value;
+    
+    // if (inputValue) {
+    //   const umaPessoa:Task = {
+    //      work: inputValue,
+    //      time: new Date().toLocaleTimeString()
+    //   }
+    //   setArrayTasks([...arrayTasks, umaPessoa])
+    //   inputValue = ''
+    //   console.log(arrayTasks)
+    // }else{
+    //   alert('Preencha o campo antes de definir uma tarefa')
+    // }
   }
   //Função para registrar o valor do input pela tecla "Enter"
   function enterPress(event:any){
     console.log(event.key)
     if(event.key == 'Enter') {
-      handleRegister
+      handleRegister()
       console.log(arrayTasks)
     }
   }
@@ -37,7 +48,7 @@ function App() {
       <div>
         <h2>Registro de Pessoas</h2>
         <div className='registerCamp'>
-          <input className='inputTask' type="text" onKeyDown={enterPress}/>
+          <input className='inputTask' type="text"  value={work} onKeyDown={enterPress} onChange={(e) => setWork(e.target.value)} />
           <button className='btnRegister' onClick={handleRegister}>Registrar</button>
         </div>
       </div>
